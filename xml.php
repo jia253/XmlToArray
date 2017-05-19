@@ -7,10 +7,15 @@
 */
 
 class XmlToArray{
-
-	public $file = '';
-	public function __construct($file=''){
+	/**
+	* @param $file  xml文件地址或路径
+	* @param $version xml的版本号
+	* @param $encode  xml的编码
+	*/
+	public function __construct($file='',$version='1.0',$encode='utf-8'){
 		$this->file = $file;
+		$this->version = $version;
+		$this->encode = $encode;
 		return $this;
 	}
 
@@ -20,12 +25,13 @@ class XmlToArray{
 	 * @author jia253<jia253@qq.com> by 2017-05-19
 	 */
 	public function xmlArray(){
-		$domComment = new \DOMDocument('1.0','gbk');
+		$domComment = new \DOMDocument($this->version,$this->encode);
 		if(!file_exists($this->file)){
 			echo $this->file.'文件不存在';die;
 		}
 		$xml = file_get_contents($this->file);
-		$xml = mb_convert_encoding( $xml, "HTML-ENTITIES", "gbk"); //将gbk的编码转成HTML-ENTITIES
+		//如果是utf-8的可以忽略下面这个步骤 以及后续的转化
+		$xml = mb_convert_encoding( $xml, "HTML-ENTITIES",$this->version); //将gbk的编码转成HTML-ENTITIES
 		//加载xml字符串源
 		$domComment->loadXML($xml);
 
@@ -88,6 +94,8 @@ class XmlToArray{
 		}
 	}
 }
+
+
 
 
 
