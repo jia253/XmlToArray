@@ -5,58 +5,13 @@
 * Date: 2017/5/17
 * Time: 10:42
 */
-include_once dirname ( dirname ( dirname ( __DIR__ ) ) ) . '/Crontab/autoloader.php';
-C ( C ( 'DB_SCRIPT' ) );
 
+class XmlToArray
 
-class xmlOperate extends \Common\Script\xml\Xml {
-	/**
-	 *
-	 * @var Caipu\Model\TopicModel
-	 */
-	private $_topicModel = null;
-	/**
-	 *
-	 * @var Caipu\Model\DishModel
-	 */
-	private $_dishModel = null;
-
-	public function __construct() {
-
-		$this->_tplDir = __DIR__ . '/template/';
-
-		$this->page = isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : 1;
-		$this->platfrom = isset($_SERVER['argv'][2]) ? $_SERVER['argv'][2] : 'M'; //平台操作
-		$this->type = isset($_SERVER['argv'][3]) ? $_SERVER['argv'][3] : ''; //操作
-
-		$this->dispatch();
-	}
-
-	public function dispatch(){
-		switch ($this->platfrom){
-			case 'M':
-				$this->file = 'printFile/dish/data'.$this->page.'.xml';
-				$modDir = 'printFile/dish/modXml';
-				$this->_xmlDir = $modDir;
-				$this->_tplFile = 'dish.html';
-				if(!is_dir($modDir)){
-					@mkdir($modDir);
-				}
-				$this->_putFileName = 'data'.$this->page.'.xml';
-				$this->modWap();
-				break;
-			default:
-				break;
-		}
-	}
-
-	public function modWap(){
-
-	}
 
 	/**
 	 * @name 将xml文件内容转为array
-	 * @author czz<chenzhuangzhuang@xiangha.com> by 2017-05-18
+	 * @author jia253<jia253@qq.com> by 2017-05-19
 	 */
 	public function xmlArray(){
 		$domComment = new \DOMDocument('1.0','gbk');
