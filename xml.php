@@ -16,7 +16,6 @@ class XmlToArray{
 		$this->file = $file;
 		$this->version = $version;
 		$this->encode = $encode;
-		return $this;
 	}
 
 
