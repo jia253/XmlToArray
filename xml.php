@@ -6,7 +6,13 @@
 * Time: 10:42
 */
 
-class XmlToArray
+class XmlToArray{
+
+	public $file = '';
+	public function __construct($file=''){
+		$this->file = $file;
+		return $this;
+	}
 
 
 	/**
@@ -83,8 +89,6 @@ class XmlToArray
 	}
 }
 
-$xml = new xmlOperate();
-$xml->run(true);
 
 
 
