@@ -56,6 +56,7 @@ class XmlToArray{
 			}
 			$index++;
 		}
+		return $list;
 	}
 
 	/**
