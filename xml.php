@@ -12,10 +12,11 @@ class XmlToArray{
 	* @param $version xml的版本号
 	* @param $encode  xml的编码
 	*/
-	public function __construct($file='',$version='1.0',$encode='utf-8'){
+	public function __construct($file='',$version='1.0',$encode='utf-8',$xmlRoot='item'){
 		$this->file = $file;
 		$this->version = $version;
 		$this->encode = $encode;
+		$this->xmlRoot = $xmlRoot;
 	}
 
 
@@ -37,7 +38,7 @@ class XmlToArray{
 		$list = [];
 		$index = 0;
 		//获取根节点 遍历
-		foreach ($domComment->getElementsByTagName('item') as $node){
+		foreach ($domComment->getElementsByTagName($this->xmlRoot) as $node){
 			foreach ($node->childNodes as $chlidNode){
 				if(isset($chlidNode->tagName)){
 					$key = mb_convert_encoding($chlidNode->tagName,'utf-8','HTML-ENTITIES');
